@@ -8,7 +8,7 @@
 </style>
 </head>
 <body>
-<header><div class="eyebrow">ALGORITHM LAB · 고등학교 알고리즘</div><h1>정렬 알고리즘 실험실</h1><p>숫자가 정리되는 과정을 한 단계씩 살펴보고, 직접 정렬해 보세요. 핵심은 “무엇을 비교하고, 언제 자리를 바꾸는가?”입니다.</p><nav class="crosslinks" aria-label="다른 알고리즘 학습 페이지"><a href="search.html">탐색 알고리즘 실험실 →</a></nav></header>
+<header><div class="eyebrow">ALGORITHM LAB</div><h1>정렬 알고리즘 실험실</h1><p>숫자가 정리되는 과정을 한 단계씩 살펴보고, 직접 정렬해 보세요. 핵심은 “무엇을 비교하고, 언제 자리를 바꾸는가?”입니다.</p><nav class="crosslinks" aria-label="다른 알고리즘 학습 페이지"><a href="search.html">탐색 알고리즘 실험실 →</a></nav></header>
 <main class="wrap">
 <div class="tabs" role="tablist"><button class="tab active" data-tab="lab">① 시각화 실험</button><button class="tab" data-tab="learn">② 알고리즘 비교</button><button class="tab" data-tab="quiz">③ 직접 풀기</button></div>
 <section id="lab" class="section">
@@ -34,6 +34,7 @@ $('#start').onclick=()=>{let a=parse();if(!a)return;clearInterval(timer);$('#pla
 $$('.tab').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x===b));$$('.section').forEach(x=>x.style.display=x.id===b.dataset.tab?'block':'none')});
 let quizData={};function buildQuiz(){let alg=$('#qalg').value,arr=[5,2,4,1],answer,choices,explain;if(alg==='bubble'){answer='5와 2를 비교한 뒤 교환';choices=['5와 2를 비교한 뒤 교환','최솟값 1을 찾아 맨 앞으로 이동','피벗 1을 기준 위치에 놓기'];explain='첫 비교는 인덱스 0과 1의 5, 2입니다. 왼쪽이 더 크므로 교환해 배열은 2, 5, 4, 1이 됩니다.'}else if(alg==='selection'){answer='최솟값 1을 찾아 맨 앞으로 이동';choices=['5와 2만 비교하고 바로 교환','최솟값 1을 찾아 맨 앞으로 이동','피벗 1을 기준 위치에 놓기'];explain='첫 회전은 미정렬 구간 전체를 살펴 최솟값 1을 찾습니다. 끝에서 맨 앞으로 한 번 이동해 1, 2, 4, 5가 됩니다.'}else{answer='피벗 1을 기준 위치에 놓기';choices=['5와 2를 비교한 뒤 교환','최솟값 1을 찾아 맨 앞으로 이동','피벗 1을 기준 위치에 놓기'];explain='마지막 값 1이 피벗입니다. 다른 값은 모두 1보다 크므로 분할 뒤 피벗은 인덱스 0에 놓입니다.'}quizData={answer,explain};$('#question').textContent=alg==='quick'?'[5, 2, 4, 1]에서 마지막 값 1을 피벗으로 골랐습니다. 첫 분할이 끝나면 무엇이 일어날까요?':'[5, 2, 4, 1]에서 첫 단계로 무엇을 할까요?';$('#answers').innerHTML=choices.map((x,i)=>`<label><input type="radio" name="answer" value="${x}"> ${x}</label>`).join('');$('#feedback').textContent='';$('#solution').style.display='none'}$('#qalg').onchange=()=>{$('#qcase').value=$('#qalg').value;buildQuiz()};$('#qcase').onchange=()=>{$('#qalg').value=$('#qcase').value;buildQuiz()};$('#newq').onclick=buildQuiz;$('#check').onclick=()=>{let sel=$('input[name="answer"]:checked');if(!sel){$('#feedback').textContent='먼저 답을 선택해 주세요.';return}let ok=sel.value===quizData.answer;$('#feedback').textContent=ok?'정답이에요!':'아직 아니에요. 설명을 확인해 보세요.';$('#feedback').style.color=ok?'#16875b':'#c14c62';$('#solution').textContent=quizData.explain;$('#solution').style.display='block'};buildQuiz();$('#description').textContent=descriptions.bubble;
 </script></body></html>
+
 
 
 

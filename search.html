@@ -8,7 +8,7 @@
 </style>
 </head>
 <body>
-<header><div class="eyebrow">ALGORITHM LAB · 고등학교 알고리즘</div><h1>탐색 알고리즘 실험실</h1><p>원하는 값을 찾는 두 가지 방법을 비교해 보세요. 하나씩 확인할까요, 범위를 절반씩 줄일까요?</p><nav class="crosslinks" aria-label="다른 알고리즘 학습 페이지"><a href="index.html">← 정렬 알고리즘 실험실</a></nav></header>
+<header><div class="eyebrow">ALGORITHM LAB</div><h1>탐색 알고리즘 실험실</h1><p>원하는 값을 찾는 두 가지 방법을 비교해 보세요. 하나씩 확인할까요, 범위를 절반씩 줄일까요?</p><nav class="crosslinks" aria-label="다른 알고리즘 학습 페이지"><a href="index.html">← 정렬 알고리즘 실험실</a></nav></header>
 <main class="wrap">
 <div class="tabs"><button class="tab active" data-tab="lab">① 시각화 실험</button><button class="tab" data-tab="learn">② 알고리즘 비교</button><button class="tab" data-tab="quiz">③ 직접 풀기</button></div>
 <section id="lab" class="section">
@@ -31,4 +31,5 @@ $('#start').onclick=()=>{let a=parse();if(!a)return;let target=Number($('#target
 $$('.tab').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x===b));$$('.section').forEach(x=>x.style.display=x.id===b.dataset.tab?'block':'none')});
 let quizData={};function buildQuiz(){let alg=$('#qalg').value,a=[4,9,13,18,22,27,31,36],target=27;let answer=alg==='linear'?0:Math.floor((a.length-1)/2);quizData={answer,alg};$('#question').textContent='배열 ['+a.join(', ')+']에서 '+target+'을 찾습니다. 첫 비교 위치의 인덱스는 무엇일까요?';let choices=[0,1,3,4,6];if(!choices.includes(answer))choices.push(answer);$('#answers').innerHTML=choices.map(i=>`<label><input type="radio" name="answer" value="${i}"> 인덱스 ${i} (값 ${a[i]})</label>`).join('');$('#feedback').textContent='';$('#solution').style.display='none'}$('#qalg').onchange=buildQuiz;$('#newq').onclick=buildQuiz;$('#check').onclick=()=>{let sel=$('input[name="answer"]:checked');if(!sel){$('#feedback').textContent='먼저 답을 선택해 주세요.';return}let ok=Number(sel.value)===quizData.answer;$('#feedback').textContent=ok?'정답이에요!':'다시 생각해 보세요.';$('#feedback').style.color=ok?'#16875b':'#c14c62';let a=[4,9,13,18,22,27,31,36],i=quizData.answer;$('#solution').textContent=quizData.alg==='linear'?'순차 탐색은 배열의 첫 값부터 보므로 인덱스 0의 값 4를 먼저 확인합니다.':'이진 탐색은 범위 0~7의 가운데인 인덱스 3, 값 18을 먼저 확인합니다. 27은 더 크므로 다음 범위는 인덱스 4~7입니다.';$('#solution').style.display='block'};buildQuiz();$('#description').textContent=descriptions.linear;
 </script></body></html>
+
 
